@@ -8,7 +8,7 @@ const login = async (req: Request, res: Response, next: NextFunction) => {
     const { email } = req.body;
     const user = await services.login(email);
 
-    if (!user) return res.status(400).json({ message: 'Incorrect email' });
+    if (!user) return res.status(401).json({ message: 'Incorrect email or password' });
 
     const token = authorization(user as IUser);
     const result = { user, token };

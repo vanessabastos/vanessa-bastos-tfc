@@ -1,4 +1,4 @@
-import { ITeam } from '../interfaces/teams';
+import { ITeam } from '../interfaces/Teams';
 import Teams from '../database/models/Teams';
 
 const getAllTeams = async (): Promise<ITeam[] | null> => {

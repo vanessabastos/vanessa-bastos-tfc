@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       homeTeam: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         field: 'home_team',
         references: {

@@ -4,10 +4,12 @@ import Teams from '../database/models/Teams';
 const listMatch = async () => {
   const match = await Matches.findAll({
     include: [
-      { model: Teams, as: 'homeTeam', attributes: [['team_name', 'nameTeam']] },
-      { model: Teams, as: 'awayTeam', attributes: [['team_name', 'nameTeam']] },
+      { model: Teams, as: 'teamHome', attributes: { exclude: ['id'] } },
+      { model: Teams, as: 'teamAway', attributes: { exclude: ['id'] } },
     ],
   });
+
+  if (match === []) return null;
 
   return match;
 };

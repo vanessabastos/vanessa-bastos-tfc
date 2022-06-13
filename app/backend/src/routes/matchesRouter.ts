@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import listMatches from '../controllers/matchesController';
+import matchesController from '../controllers/matchesController';
 
 const matchesRouter = Router();
 
-matchesRouter.get('/', listMatches);
+matchesRouter.post('/', matchesController.createMatches);
+matchesRouter.get('/', matchesController.listMatches);
+matchesRouter.patch('/:id/finish', matchesController.matchePatch);
 
 export default matchesRouter;

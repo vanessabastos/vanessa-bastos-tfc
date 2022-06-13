@@ -14,4 +14,28 @@ const listMatch = async () => {
   return match;
 };
 
-export default listMatch;
+const create = async () => {
+  const match = await Matches.create({
+    homeTeam: 4,
+    awayTeam: 9,
+    homeTeamGoals: 2,
+    awayTeamGoals: 2,
+    inProgress: true,
+  });
+
+  return match;
+};
+
+const patchMatches = async (id: number) => {
+  const matche = await Matches.findByPk(id);
+
+  if (matche) {
+    await Matches.update({ inProgress: false }, { where: { id } });
+
+    return true;
+  }
+
+  return false;
+};
+
+export { listMatch, create, patchMatches };

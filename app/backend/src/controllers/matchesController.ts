@@ -19,7 +19,7 @@ const createMatches = async (req: Request, res: Response, next: NextFunction) =>
     const { homeTeam, awayTeam } = newMatches;
     const resultMatches = await create(newMatches);
 
-    if (!newMatches) {
+    if (!resultMatches) {
       return res.status(404).json({ message: 'There is no team with such id!' });
     }
     if (homeTeam === awayTeam) {

@@ -15,12 +15,13 @@ const listMatch = async () => {
   return match;
 };
 
-const create = async (myBody: IMatches) => {
-  const { homeTeam } = myBody;
+const create = async (myBody: Matches) => {
+  const { homeTeam, awayTeam } = myBody;
 
   const validHomeTeam = await Matches.findByPk(homeTeam);
+  const validAwayTeam = await Matches.findByPk(awayTeam);
 
-  if (validHomeTeam) return null;
+  if (!validHomeTeam || !validAwayTeam) return null;
 
   const match = await Matches.create(myBody);
 
@@ -31,7 +32,7 @@ const patchMatches = async (id: number) => {
   const matche = await Matches.findByPk(id);
 
   if (matche) {
-    await Matches.update({ inProgress: false }, { where: { id } });
+    await Matches.update({ inProgress: 0 }, { where: { id } });
 
     return true;
   }
